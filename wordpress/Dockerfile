@@ -1,7 +1,7 @@
 FROM debian:11
 
 RUN apt-get update && \
-    apt-get install apache2 wget php php-bcmath php-curl php-imagick php-gd php-mysql vim -y && \
+    apt-get install apache2 apache2-utils wget php php-bcmath php-curl php-imagick php-gd php-mysql vim -y && \
     service apache2 start && \
     wget https://wordpress.org/latest.tar.gz && \
     tar -zxf latest.tar.gz -C /var/www/html/ && \
