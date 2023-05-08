@@ -8,5 +8,7 @@ mysql -u root -p"$ROOT_PASSWD" -e "CREATE USER '$NEW_USER'@'$NEW_USER_HOST' IDEN
 mysql -u root -p"$ROOT_PASSWD" -e "CREATE DATABASE $NEW_DATABASE;"
 mysql -u root -p"$ROOT_PASSWD" -e "GRANT ALL ON $NEW_DATABASE.* TO '$NEW_USER'@'$NEW_USER_HOST';"
 mysql -u root -p"$ROOT_PASSWD" -e "FLUSH PRIVILEGES;"
+sed -i "s/bind-address            = 127.0.0.1/bind-address            = 0.0.0.0/g" /etc/mysql/mariadb.conf.d/50-server.cnf;
+service mariadb restart
 
 tail -f /dev/null
