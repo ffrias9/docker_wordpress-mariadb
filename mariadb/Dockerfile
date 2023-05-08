@@ -6,6 +6,8 @@ ENV NEW_USER_HOST="%"
 ENV NEW_USER_PASSWD="Passw0rd!"
 ENV NEW_DATABASE="wordpress"
 
+WORKDIR /var/lib/mysql
+
 RUN apt-get update && \
     apt-get install mariadb-server mariadb-client -y
 
@@ -16,4 +18,3 @@ COPY entrypoint.sh /usr/local/bin/
 RUN chmod u+x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
