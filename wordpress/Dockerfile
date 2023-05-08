@@ -7,7 +7,7 @@ RUN apt-get update && \
     tar -zxf latest.tar.gz -C /var/www/html/ && \
     rm /latest.tar.gz && \
     useradd -u 1001 -s /bin/bash -m wordpress && \
-    chown wordpress:wordpress -R /var/www/html/wordpress/* && \
+    chown www-data:www-data -R /var/www/html/wordpress/* && \
     find /var/www/html/wordpress/ -type d -exec chmod 755 {} \; && \
     find /var/www/html/wordpress/ -type f -exec chmod 655 {} \; && \
     a2enmod rewrite && \
