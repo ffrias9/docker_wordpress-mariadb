@@ -13,7 +13,7 @@ RUN apt-get update && \
     a2enmod rewrite && \
 #    sed -i "s/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=wordpress/g" /etc/apache2/envvars && \
     sed -i "s/Listen 80/Listen 8080/g" /etc/apache2/ports.conf && \
-    service apache2 restart && \
+    service apache2 restart
 #    echo "root:toor" | chpasswd
 
 # USER 1001
