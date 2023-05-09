@@ -8,6 +8,8 @@ ENV NEW_DATABASE="wordpress"
 
 WORKDIR /var/lib/mysql
 
+VOLUME /var/lib/mysql
+
 RUN apt-get update && \
     apt-get install mariadb-server mariadb-client -y
 
