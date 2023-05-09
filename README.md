@@ -21,7 +21,7 @@ Para ejecutar el Docker Compose, nos iremos al directorio donde se encuentra dic
 siguiente comando:
 
 ```bash
-docker compose up .
+docker compose up -d
 ```
 El Docker Compose está listo para ser ejecutado, sólo se debe cambiar el nombre de las imágenes si es que este
 no coincide. Por defecto crea una red para los contenedores y unos volúmenes para la persistencia de los

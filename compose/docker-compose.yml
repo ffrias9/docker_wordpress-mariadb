@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   web:
-    image: my_wordpress:latest
+    image: ffrias9/wordpress:1.0
     ports: 
       - "8080:8080"
     volumes:
@@ -13,7 +13,7 @@ services:
       - db
 
   db:
-    image: my_mariadb:latest
+    image: ffrias9/mariadb:1.0
     ports:
       - "3306:3306"
     environment:
