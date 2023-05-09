@@ -31,10 +31,10 @@ Docker Compose, en el Dockerfile, o al ejecutar la imagen con el comando "docker
 parámetro "-e":
 
 >ROOT_PASSWD (Contraseña para usuario root de MariaDB. Por defecto: "toor")
->>NEW_USER (Nombre para nuevo usuario de MariaDB. Por defecto: "wordpress")
->>>NEW_USER_HOST (Host del nuevo usuario. Por defecto: "%")
->>>>NEW_USER_PASSWD (Contraseña para el nuevo usuario. Por defecto: "Passw0rd!")
->>>>>NEW_DATABASE (Nombre de la nueva base de datos. Por defecto: "wordpress")
+>NEW_USER (Nombre para nuevo usuario de MariaDB. Por defecto: "wordpress")
+>NEW_USER_HOST (Host del nuevo usuario. Por defecto: "%")
+>NEW_USER_PASSWD (Contraseña para el nuevo usuario. Por defecto: "Passw0rd!")
+>NEW_DATABASE (Nombre de la nueva base de datos. Por defecto: "wordpress")
 
 ---
 
