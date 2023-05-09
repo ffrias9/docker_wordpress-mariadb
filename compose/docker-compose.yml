@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  web:
+    image: my_wordpress:latest
+    ports: 
+      - "8080:8080"
+  db:
+    image: my_mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      ROOT_PASSWD: "toor"
+      NEW_USER: "wordpress"
+      NEW_USER_HOST: "%"
+      NEW_USER_PASSWD: "100220"
+      NEW_DATABASE: "wordpress"
