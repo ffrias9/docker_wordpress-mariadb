@@ -6,6 +6,11 @@ services:
       - "8080:8080"
     volumes:
       - web:/var/www/html
+    networks:
+      wordpress:
+        ipv4_address: 192.168.1.101
+    depends_on:
+      - db
 
   db:
     image: my_mariadb:latest
@@ -19,7 +24,18 @@ services:
       NEW_DATABASE: "wordpress"
     volumes:
       - database:/var/lib/mysql
+    networks:
+      wordpress:
+        ipv4_address: 192.168.1.100
 
 volumes:
   web:
   database:
+
+networks:
+  wordpress:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
