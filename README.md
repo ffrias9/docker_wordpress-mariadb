@@ -1,8 +1,9 @@
-#APACHE, MARIADB & WORDPRESS CON DOCKER
+# APACHE, MARIADB & WORDPRESS CON DOCKER
 
 ---
 
-##**DOCKERFILES**
+## **DOCKERFILES**
+
 Para construir una imagen para Docker haciendo uso del Dockerfile, deberá situarse en el directorio donde se
 encuentra el Dockerfile y ejecutar el siguiente comando:
 
@@ -14,9 +15,11 @@ El punto(".") hace indica que el Dockerfile se encuentra en la ruta actual.
 
 ---
 
-##**DOCKER COMPOSE**
+## **DOCKER COMPOSE**
+
 Para ejecutar el Docker Compose, nos iremos al directorio donde se encuentra dicho fichero y ejecutaremos el
 siguiente comando:
+
 ```bash
 docker compose up .
 ```
@@ -28,16 +31,18 @@ Docker Compose, en el Dockerfile, o al ejecutar la imagen con el comando "docker
 parámetro "-e":
 
 >ROOT_PASSWD (Contraseña para usuario root de MariaDB. Por defecto: "toor")
->NEW_USER (Nombre para nuevo usuario de MariaDB. Por defecto: "wordpress")
->NEW_USER_HOST (Host del nuevo usuario. Por defecto: "%")
->NEW_USER_PASSWD (Contraseña para el nuevo usuario. Por defecto: "Passw0rd!")
->NEW_DATABASE (Nombre de la nueva base de datos. Por defecto: "wordpress")
+>>NEW_USER (Nombre para nuevo usuario de MariaDB. Por defecto: "wordpress")
+>>>NEW_USER_HOST (Host del nuevo usuario. Por defecto: "%")
+>>>>NEW_USER_PASSWD (Contraseña para el nuevo usuario. Por defecto: "Passw0rd!")
+>>>>>NEW_DATABASE (Nombre de la nueva base de datos. Por defecto: "wordpress")
 
 ---
 
-##**DOCKER IMAGES**
+## **DOCKER IMAGES**
+
 Para bajar las imágenes directamente desde mi Docker Hub podéis ejecutar el
 siguiente comando:
+
 ```bash
 docker push ffrias9/wordpress:latest
 docker push ffrias9/mariadb:latest
