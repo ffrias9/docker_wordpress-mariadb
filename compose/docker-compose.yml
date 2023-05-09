@@ -4,6 +4,9 @@ services:
     image: my_wordpress:latest
     ports: 
       - "8080:8080"
+    volumes:
+      - web:/var/www/html
+
   db:
     image: my_mariadb:latest
     ports:
@@ -14,3 +17,9 @@ services:
       NEW_USER_HOST: "%"
       NEW_USER_PASSWD: "100220"
       NEW_DATABASE: "wordpress"
+    volumes:
+      - database:/var/lib/mysql
+
+volumes:
+  web:
+  database:
