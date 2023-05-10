@@ -11,7 +11,7 @@ WORKDIR /var/lib/mysql
 VOLUME /var/lib/mysql
 
 RUN apt-get update && \
-    apt-get install mariadb-server mariadb-client -y
+    apt-get install mariadb-client mariadb-server -y
 
 EXPOSE 3306
 
