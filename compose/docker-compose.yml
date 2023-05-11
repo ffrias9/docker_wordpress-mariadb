@@ -13,7 +13,7 @@ services:
       - db
 
   db:
-    image: ffrias9/mariadb:1.0
+    image: ffrias9/mariadb:2.0
     ports:
       - "3306:3306"
     environment:
