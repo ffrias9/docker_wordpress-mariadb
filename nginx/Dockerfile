@@ -4,7 +4,7 @@ ENV WORDPRESS_SERVER_IP="192.168.10.51:8080"
 
 WORKDIR /etc/nginx/sites-available
 
-VOLUME /etc/nginx/sites-available
+VOLUME /var/www/html
 
 RUN apt-get update && \
     apt-get install nginx -y && \
