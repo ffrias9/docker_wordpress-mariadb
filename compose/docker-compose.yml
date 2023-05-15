@@ -29,7 +29,7 @@ services:
         ipv4_address: 192.168.1.100
 
   reverse_proxy:
-    image: ffrias9/nginx:1.0
+    image: ffrias9/nginx:1.1
     ports:
       - "8081:8081"
     environment:
