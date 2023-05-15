@@ -33,7 +33,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      WORDPRESS_SERVER_IP: "192.168.10.51:8080"
+      WORDPRESS_SERVER_IP: "192.168.1.101:8080"
     volumes:
       - reverse_proxy:/etc/nginx/sites-available
     networks:
