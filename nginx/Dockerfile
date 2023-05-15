@@ -16,7 +16,23 @@ RUN apt-get update && \
     chown -R nginx:nginx /var/lib/nginx && \
     chmod -R 700 /var/lib/nginx && \
     chown -R nginx:nginx /etc/nginx && \
-    chmod -R 700 /etc/nginx
+    chmod -R 700 /etc/nginx && \
+
+    sed -i -e '/server_name _;/a \ \n\tlocation /wordpress {\n\
+            \ \t\tproxy_pass http://'$WORDPRESS_SERVER_IP'/wordpress;\n\
+            \ \t}' /etc/nginx/sites-available/default && \
+
+    echo -e "server{\n
+          listen 8081;\n
+          location /wordpress {\n
+                  proxy_pass http://$WORDPRESS_SERVER_IP/wordpress;\n
+                  proxy_buffering off;\n
+                  proxy_set_header X-Real-IP \$remote_addr;\n
+                  proxy_set_header X-Forwarded-Host \$host;\n
+                  proxy_set_header X-Forwarded-Port \$server_port;\n && \
+    }}" > /etc/nginx/sites-available/wordpress.conf && \
+
+    ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 
 EXPOSE 8081
 
