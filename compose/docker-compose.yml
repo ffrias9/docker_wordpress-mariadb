@@ -28,9 +28,24 @@ services:
       wordpress:
         ipv4_address: 192.168.1.100
 
+  reverse_proxy:
+    image: ffrias9/nginx:1.0
+    ports:
+      - "8081:8081"
+    environment:
+      WORDPRESS_SERVER_IP: "192.168.10.51:8080"
+    volumes:
+      - reverse_proxy:/etc/nginx/sites-available
+    networks:
+      wordpress:
+        ipv4_address: 192.168.1.102
+    depends_on:
+      - web
+
 volumes:
   web:
   database:
+  reverse_proxy:
 
 networks:
   wordpress:
