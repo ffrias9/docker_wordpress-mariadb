@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sed -i "s/80/8081/g" /etc/nginx/sites-available/default
+sed -i "s/80$/8081/g" /etc/nginx/sites-available/default
 
 sed -i -e '/server_name _;/a \ \n\tlocation /wordpress {\n\
 	\ \t\tproxy_pass http://'$WORDPRESS_SERVER_IP'/wordpress;\n\
