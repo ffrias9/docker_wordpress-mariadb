@@ -35,7 +35,7 @@ services:
     environment:
       WORDPRESS_SERVER_IP: "192.168.1.101:8080"
     volumes:
-      - reverse_proxy:/etc/nginx/sites-available
+      - reverse_proxy:/var/www/html
     networks:
       wordpress:
         ipv4_address: 192.168.1.102
