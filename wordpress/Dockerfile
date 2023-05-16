@@ -18,14 +18,20 @@ RUN apt-get update && \
     chmod 770 /var/run/apache2 && \
     a2enmod rewrite && \
     sed -i "s/Listen 80/Listen 8080/g" /etc/apache2/ports.conf && \
-    apache2ctl -k restart
+    apache2ctl -k restart && \
+    wget https://github.com/prometheus/node_exporter/releases/download/v1.4.1/node_exporter-1.4.1.linux-amd64.tar.gz -P /opt && \
+    tar -xzf /opt/node_exporter-1.4.1.linux-amd64.tar.gz && \
+    rm /opt/node_exporter-*linux-amd64.tar.gz && \
+    mv node_exporter-*linux-amd64 /opt/node_exporter
 
 WORKDIR /var/www/html
 
 VOLUME /var/www/html
 
 EXPOSE 8080
+EXPOSE 9100
 
 USER 1001
 
 CMD ["apache2ctl", "-D", "FOREGROUND", "-k", "start"]
+CMD ["/opt/node_exporter/node_exporter"]
