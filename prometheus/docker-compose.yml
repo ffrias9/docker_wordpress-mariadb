@@ -10,9 +10,18 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
     restart: unless-stopped
     networks:
-      - prometheus
+      - compose_wordpress
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    networks:
+      - compose_wordpress
 
 networks:
-  prometheus:
-    driver: bridge
-    name: prometheus
+  compose_wordpress:
+    external:
+      name: compose_wordpress
