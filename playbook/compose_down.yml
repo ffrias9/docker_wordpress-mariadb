@@ -1,0 +1,12 @@
+- name: Test
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Run docker-compose
+      docker_compose:
+        project_src: compose_file
+        stopped: true
+      register: output
+
+    - debug:
+        var: output
