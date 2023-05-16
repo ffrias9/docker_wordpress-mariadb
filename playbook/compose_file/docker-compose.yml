@@ -16,12 +16,8 @@ services:
     image: ffrias9/mariadb:2.0
     ports:
       - "3306:3306"
-    environment:
-      ROOT_PASSWD: "toor"
-      NEW_USER: "wordpress"
-      NEW_USER_HOST: "%"
-      NEW_USER_PASSWD: "Passw0rd!"
-      NEW_DATABASE: "wordpress"
+    env_file:
+      - vars.env
     volumes:
       - database:/var/lib/mysql
     networks:
@@ -32,8 +28,8 @@ services:
     image: ffrias9/nginx:1.3
     ports:
       - "8081:8081"
-    environment:
-      WORDPRESS_SERVER_IP: "192.168.1.101:8080"
+    env_file:
+      - vars.env
     volumes:
       - reverse_proxy:/var/www/html
     networks:
