@@ -31,7 +31,10 @@ VOLUME /var/www/html
 EXPOSE 8080
 EXPOSE 9100
 
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+
+RUN chmod 777 /usr/bin/entrypoint.sh
+
 USER 1001
 
-CMD ["apache2ctl", "-D", "FOREGROUND", "-k", "start"]
-CMD ["/opt/node_exporter/node_exporter"]
+ENTRYPOINT /usr/bin/entrypoint.sh

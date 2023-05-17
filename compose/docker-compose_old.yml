@@ -4,7 +4,6 @@ services:
     image: ffrias9/wordpress:1.0
     ports: 
       - "8080:8080"
-      - "9102:9100"
     volumes:
       - web:/var/www/html
     networks:
@@ -17,7 +16,6 @@ services:
     image: ffrias9/mariadb:2.0
     ports:
       - "3306:3306"
-      - "9101:9100"
     environment:
       ROOT_PASSWD: "toor"
       NEW_USER: "wordpress"
@@ -34,7 +32,6 @@ services:
     image: ffrias9/nginx:1.3
     ports:
       - "8081:8081"
-      - "9103:9100"
     environment:
       WORDPRESS_SERVER_IP: "192.168.1.101:8080"
     volumes:

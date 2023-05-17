@@ -11,7 +11,7 @@ WORKDIR /var/lib/mysql
 VOLUME /var/lib/mysql
 
 RUN apt-get update && \
-    apt-get install mariadb-client mariadb-server -y && \
+    apt-get install wget mariadb-client mariadb-server -y && \
     useradd -u 1001 -s /bin/bash -m mariadb && \
     /etc/init.d/mariadb start && \
     mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '$ROOT_PASSWD' WITH GRANT OPTION;" && \
@@ -24,9 +24,14 @@ RUN apt-get update && \
     chown -R mariadb:mariadb /etc/mysql/ && \
     chmod -R 770 /etc/mysql/ && \
     chown mariadb:mariadb /usr/sbin/mariadbd && \
-    chmod 770 /usr/sbin/mariadbd
+    chmod 770 /usr/sbin/mariadbd && \
+    wget https://github.com/prometheus/node_exporter/releases/download/v1.4.1/node_exporter-1.4.1.linux-amd64.tar.gz -P /opt && \
+    tar -xzf /opt/node_exporter-1.4.1.linux-amd64.tar.gz && \
+    rm /opt/node_exporter-*linux-amd64.tar.gz && \
+    mv node_exporter-*linux-amd64 /opt/node_exporter
 
 EXPOSE 3306
+EXPOSE 9100
 
 COPY entrypoint.sh /usr/local/bin/
 

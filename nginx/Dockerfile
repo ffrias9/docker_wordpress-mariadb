@@ -7,7 +7,7 @@ WORKDIR /etc/nginx/sites-available
 VOLUME /var/www/html
 
 RUN apt-get update && \
-    apt-get install nginx -y && \
+    apt-get install wget nginx -y && \
     useradd nginx -m -s /bin/bash -u 1001 && \
     chown -R nginx:nginx /var/log/nginx && \
     chmod -R 700 /var/log/nginx  && \
@@ -19,9 +19,14 @@ RUN apt-get update && \
     chmod -R 700 /etc/nginx && \
     sed -i -e '/server_name _;/a \ \n\tlocation /wordpress {\n\
             \ \t\tproxy_pass http://'$WORDPRESS_SERVER_IP'/wordpress;\n\
-            \ \t}' /etc/nginx/sites-available/default
+            \ \t}' /etc/nginx/sites-available/default && \
+    wget https://github.com/prometheus/node_exporter/releases/download/v1.4.1/node_exporter-1.4.1.linux-amd64.tar.gz -P /opt && \
+    tar -xzf /opt/node_exporter-1.4.1.linux-amd64.tar.gz && \
+    rm /opt/node_exporter-*linux-amd64.tar.gz && \
+    mv node_exporter-*linux-amd64 /opt/node_exporter
 
 EXPOSE 8081
+EXPOSE 9100
 
 COPY entrypoint.sh /usr/local/bin/
 COPY wordpress.conf /etc/nginx/sites-available/

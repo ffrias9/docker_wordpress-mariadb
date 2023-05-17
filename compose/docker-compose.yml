@@ -1,41 +1,53 @@
 version: "3.9"
 services:
   web:
-    image: ffrias9/wordpress:1.0
+    image: promwordpress
+    #ffrias9/wordpress:1.0
     ports: 
       - "8080:8080"
-    volumes:
-      - web:/var/www/html
+      - "9102:9100"
+        #volumes:
+        #- web:/var/www/html
     networks:
       wordpress:
         ipv4_address: 192.168.1.101
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 128M
     depends_on:
       - db
 
   db:
-    image: ffrias9/mariadb:2.0
+    image: prommariadb
+    #ffrias9/mariadb:2.0
     ports:
       - "3306:3306"
+      - "9101:9100"
     environment:
       ROOT_PASSWD: "toor"
       NEW_USER: "wordpress"
       NEW_USER_HOST: "%"
       NEW_USER_PASSWD: "Passw0rd!"
       NEW_DATABASE: "wordpress"
-    volumes:
-      - database:/var/lib/mysql
+      #    volumes:
+            #      - database:/var/lib/mysql
     networks:
       wordpress:
         ipv4_address: 192.168.1.100
 
   reverse_proxy:
-    image: ffrias9/nginx:1.3
+    image: promnginx
+    #ffrias9/nginx:1.3
     ports:
       - "8081:8081"
+      - "9103:9100"
     environment:
       WORDPRESS_SERVER_IP: "192.168.1.101:8080"
-    volumes:
-      - reverse_proxy:/var/www/html
+      #    volumes:
+            #      - reverse_proxy:/var/www/html
     networks:
       wordpress:
         ipv4_address: 192.168.1.102
