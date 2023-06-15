@@ -21,7 +21,7 @@ RUN apt-get update && \
             \ \t\tproxy_pass http://'$WORDPRESS_SERVER_IP'/wordpress;\n\
             \ \t}' /etc/nginx/sites-available/default
 
-EXPOSE 8081
+EXPOSE 80
 
 COPY entrypoint.sh /usr/local/bin/
 COPY wordpress.conf /etc/nginx/sites-available/
