@@ -14,7 +14,7 @@ RUN apt-get update && \
     apt-get install mariadb-client mariadb-server -y && \
     useradd -u 1001 -s /bin/bash -m mariadb && \
     /etc/init.d/mariadb start && \
-    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '$ROOT_PASSWD' WITH GRANT OPTION;" && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;" && \
     chown -R mariadb:mariadb /var/lib/mysql/ && \
     chmod -R 770 /var/lib/mysql/ && \
     chown -R mariadb:mariadb /run/mysqld && \
