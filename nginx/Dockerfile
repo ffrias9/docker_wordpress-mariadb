@@ -25,7 +25,7 @@ RUN apt-get update && \
     rm /opt/node_exporter-*linux-amd64.tar.gz && \
     mv node_exporter-*linux-amd64 /opt/node_exporter
 
-EXPOSE 8081
+EXPOSE 80
 EXPOSE 9100
 
 COPY entrypoint.sh /usr/local/bin/
