@@ -1,0 +1,36 @@
+FROM debian:11
+
+ENV ROOT_PASSWD="toor"
+ENV NEW_USER="wordpress"
+ENV NEW_USER_HOST="%"
+ENV NEW_USER_PASSWD="Passw0rd!"
+ENV NEW_DATABASE="wordpress"
+
+WORKDIR /var/lib/mysql
+
+VOLUME /var/lib/mysql
+
+RUN apt-get update && \
+    apt-get install mariadb-server -y && \
+    useradd -u 1001 -s /bin/bash -m mariadb && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/lib/mysql && \
+    mkdir -p /var/lib/mysql && \
+    mkdir -p /var/run/mysqld && \
+    /etc/init.d/mariadb start && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;" && \
+    chown -R mariadb:mariadb /var/lib/mysql/ && \
+    chown -R mariadb:mariadb /var/run/mysqld && \
+    chmod 777 /var/run/mysqld
+
+EXPOSE 3306
+
+COPY entrypoint.sh /usr/local/bin/
+
+RUN chmod u+x /usr/local/bin/entrypoint.sh && \
+    chown 1001:1001 /usr/local/bin/entrypoint.sh
+
+USER 1001
+
+ENTRYPOINT ["/usr/local/bin/eintrypoint.sh"]
+CMD ["tail", "-f", "/dev/null"]
